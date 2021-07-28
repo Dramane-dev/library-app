@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Zen Loop', cursive;
+}
+
+body {
+    background-color: #f4f4fc;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 27px;
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
+.top-bar > p {
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: xx-large;
+}
+
+.books-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.book-card {    
+    border: 1px solid black;
+    border-radius: 2%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin: 5px;
+    width: 20%;
+}
+
+.book-card > * {
+    padding: 3px;
+    justify-content: left;
+    margin-left: 5%;
+}
+
+.book-card > p {
+    justify-content: left;
+    margin-left: 20px;
+    font-size: large;
+}
+
+.book-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
