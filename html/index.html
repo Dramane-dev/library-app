@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,13 +17,34 @@
 
     <title>Library App</title>
 </head>
+
 <body>
     <div class="top-bar">
-        <h1>Library App 📓</h1>
-        <p id="add-new-book" class="add-new-book">Add new book</p>
+        <h1 id="title">Library App 📓</h1>
+        <p id="add-new-book">Add new book</p>
     </div>
 
-    <div id="books-container" class="books-container" ></div>
+    <div id="books-container" class="books-container">
+        <div id="book-card" class="book-card" data-id="0">
+            <div id="delete-book" class="delete-book">
+                <p id="delete-book-btn">X</p>
+            </div>
+            <h1>Title</h1>
+            <p>Harry Potter et la chambre des secrets</p>
+            <h1>Author</h1>
+            <p>JK. Rolling</p>
+            <h1>Pages</h1>
+            <p>450</p>
+            <h1>Read</h1>
+            <p>false</p>
+        </div>
+
+        <div id="no-books" class="no-books">
+            <h1>You don't have a books in your library...</h1>
+            <p>Would you like to add a book ?</p>
+            <p id="add-new-book-btn" class="add-new-book">Add new book</p>
+        </div>
+    </div>
 
     <div id="hide-all-books"></div>
 
@@ -36,7 +58,7 @@
             <input id="book-title" name="title" placeholder="Title of book" type="text">
 
             <label for="author">Author</label>
-             <input id="book-author" name="author" placeholder="Author of book" type="text">
+            <input id="book-author" name="author" placeholder="Author of book" type="text">
 
             <label for="pages">Pages</label>
             <input id="book-pages" name="pages" placeholder="Pages of book" type="text">
@@ -49,4 +71,5 @@
     </div>
     <script src="../js/main.js" type="module"></script>
 </body>
+
 </html>

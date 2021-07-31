@@ -30,6 +30,7 @@ let myLibrary = [
         read: false
     }
 ];
+let appTitle = document.getElementById('title');
 let booksContainer = document.getElementById('books-container');
 let formTitle = document.getElementById('form-title-container');
 let formContainer = document.getElementById('form-container');
@@ -39,8 +40,11 @@ let bookAuthor= document.getElementById('book-author');
 let bookPages = document.getElementById('book-pages');
 let bookRead = document.getElementById('book-read');
 let addNewBookBtn = document.getElementById('add-new-book');
+let addNewBook = document.getElementById('add-new-book-btn');
+let noBookMsg = document.getElementById('no-books');
 
 export {
+    appTitle,
     myLibrary,
     booksContainer,
     formTitle,
@@ -50,6 +54,8 @@ export {
     bookAuthor,
     bookPages,
     bookRead,
-    addNewBookBtn
+    addNewBookBtn,
+    addNewBook,
+    noBookMsg
 };
 

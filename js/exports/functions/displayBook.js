@@ -10,7 +10,22 @@ export function displayBook(books) {
 
     for (let i = 0; i < books.length; i++) {
         let bookCard = document.createElement('div');
+        let removeBookCard = document.createElement('div');
+        let removeParagraph = document.createElement('p');
+
+        bookCard.id = 'book-card';
         bookCard.className = 'book-card';
+        bookCard.setAttribute('data-id', i);
+
+        removeBookCard.id = 'delete-book';
+        removeBookCard.className = 'delete-book';
+
+        removeParagraph.id = 'delete-book-btn';
+        removeParagraph.textContent = 'X'
+
+        removeBookCard.appendChild(removeParagraph);
+        
+        bookCard.appendChild(removeBookCard);
 
         childrens = [
             createElement(words.Title, 'h1'),
@@ -22,7 +37,7 @@ export function displayBook(books) {
             createElement(words.Read, 'h1'),
             createElement(books[i].read, 'p')
         ];
-
+        
         addChildren(bookCard, childrens);
 
         container.appendChild(bookCard);

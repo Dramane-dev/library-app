@@ -3,12 +3,30 @@ import * as htmlWords from '../htmlWords.js';
 import { createElement } from './createElement.js';
 import { addChildren } from './addChildren.js';
 
-export function addBookToLibrary(book) {
+export function addBookToLibrary(book, id) {
     let container = variables.booksContainer;
     let childrens = [];
     let words = htmlWords.default.htmlWords;
     let bookCard = document.createElement('div');
+    let removeBookCard = document.createElement('div');
+    let removeParagraph = document.createElement('p');
+
     bookCard.className = 'book-card';
+    bookCard.setAttribute('data-id', id);
+
+    removeBookCard.id = 'delete-book';
+    removeBookCard.className = 'delete-book';
+
+    removeParagraph.id = 'delete-book-btn';
+    removeParagraph.textContent = 'X'
+
+    removeBookCard.appendChild(removeParagraph);
+
+    removeBookCard.addEventListener('click', () => {
+        variables.booksContainer.removeChild(removeBookCard.parentNode);
+    });
+
+    bookCard.appendChild(removeBookCard);
 
     variables.myLibrary.push(book);
 
@@ -25,4 +43,6 @@ export function addBookToLibrary(book) {
 
     addChildren(bookCard, childrens);
     container.appendChild(bookCard);
+
+    variables.noBookMsg.style.display = 'none';
 }

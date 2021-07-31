@@ -15,13 +15,18 @@ export function Book(
     this.read = read;
 }
 
-variables.submit.addEventListener('click', () => {
-    variables.formTitle.style.display = 'none';
-    variables.formContainer.style.display = 'none';
+let booksContainer = document.querySelector('.books-container');
 
-    getFormValues(variables);
+window.setInterval(() => {
+    if (!booksContainer.contains(document.querySelector('.book-card'))) {
+        variables.noBookMsg.style.display = 'block';
+    } else {
+        variables.noBookMsg.style.display = 'none';
+    }
+}, 100);
 
-    variables.booksContainer.style.display = 'flex';
+variables.appTitle.addEventListener('click', () => {
+    location.reload();
 });
 
 variables.addNewBookBtn.addEventListener('click', () => {
@@ -31,4 +36,30 @@ variables.addNewBookBtn.addEventListener('click', () => {
     variables.formContainer.style.display = 'block';
 });
 
+variables.addNewBook.addEventListener('click', () => {
+    hideAllBooks();
+    
+    variables.formTitle.style.display = 'block';
+    variables.formContainer.style.display = 'block';
+});
+
+variables.submit.addEventListener('click', () => {
+    let id = variables.myLibrary.length - 1;
+
+    variables.formTitle.style.display = 'none';
+    variables.formContainer.style.display = 'none';
+
+    getFormValues(variables, id);
+
+    variables.booksContainer.style.display = 'flex';
+});
+
 displayBook(variables.myLibrary);
+
+let deleteBtnList = document.querySelectorAll('.delete-book');
+
+deleteBtnList.forEach(btn => {
+    btn.addEventListener('click', () => {
+        variables.booksContainer.removeChild(btn.parentNode);
+    }); 
+});
