@@ -28,6 +28,12 @@ let myLibrary = [
         author: 'JK. Rolling',
         pages: '450',
         read: false
+    },
+    {
+        title: 'Harry Potter et la chambre des secrets',
+        author: 'JK. Rolling',
+        pages: '450',
+        read: false
     }
 ];
 let appTitle = document.getElementById('title');
