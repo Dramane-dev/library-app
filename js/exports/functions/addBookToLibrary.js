@@ -8,11 +8,21 @@ export function addBookToLibrary(book, id) {
     let childrens = [];
     let words = htmlWords.default.htmlWords;
     let bookCard = document.createElement('div');
+    let btnsContainer = document.createElement('div');
+    let editBook = document.createElement('div');
+    let editBtn = document.createElement('span');
     let removeBookCard = document.createElement('div');
-    let removeParagraph = document.createElement('p');
+    let removeParagraph = document.createElement('span');
 
     bookCard.className = 'book-card';
     bookCard.setAttribute('data-id', id);
+
+    btnsContainer.className = 'btns-container'
+
+    editBook.id = 'edit-book';
+    editBook.className = 'edit-book';
+    editBtn.className = 'material-icons';
+    editBtn.textContent = 'edit';
 
     removeBookCard.id = 'delete-book';
     removeBookCard.className = 'delete-book';
@@ -20,13 +30,22 @@ export function addBookToLibrary(book, id) {
     removeParagraph.id = 'delete-book-btn';
     removeParagraph.textContent = 'X'
 
+    editBook.appendChild(editBtn);
     removeBookCard.appendChild(removeParagraph);
+    
+    btnsContainer.appendChild(removeBookCard);
+    btnsContainer.appendChild(editBook);
 
-    removeBookCard.addEventListener('click', () => {
-        variables.booksContainer.removeChild(removeBookCard.parentNode);
+    editBook.addEventListener('click', () => {
+        console.log('eidt my book');
+        // variables.booksContainer.openForm(editBook.parentNode);
     });
 
-    bookCard.appendChild(removeBookCard);
+    removeBookCard.addEventListener('click', () => {
+        variables.booksContainer.removeChild(removeBookCard.parentNode.parentNode);
+    });
+
+    bookCard.appendChild(btnsContainer);
 
     variables.myLibrary.push(book);
 

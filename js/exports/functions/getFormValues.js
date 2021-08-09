@@ -1,3 +1,4 @@
+import * as variables from '../variables.js';
 import { Book } from '../../main.js';
 import { addBookToLibrary } from './addBookToLibrary.js';
 
@@ -9,5 +10,6 @@ export function getFormValues(fields, id) {
         fields.bookRead.checked
     );
 
+    variables.objectInstances.push(book);
     addBookToLibrary(book, id);
 }

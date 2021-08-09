@@ -9,11 +9,14 @@
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/editForm.css">
 
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
     <title>Library App</title>
 </head>
@@ -52,7 +55,29 @@
             <label for="read">Have you read it in entire ?</label>
             <input id="book-read" name="read" type="checkbox">
 
-            <input id="submit" class="submit" name="submit" value="submit">
+            <input id="submit" class="submit" name="submit" value="submit" type="submit">
+        </form>
+    </div>
+
+    <div id="edit-form-title-container" class="edit-form-title-container">
+        <h3 id="form-title">Edit book</h3>
+    </div>
+
+    <div id="edit-form-container" class="edit-form-container">
+        <form class="form-book">
+            <label for="title">Title</label>
+            <input id="edit-book-title" name="title" placeholder="Title of book" type="text">
+
+            <label for="author">Author</label>
+            <input id="edit-book-author" name="author" placeholder="Author of book" type="text">
+
+            <label for="pages">Pages</label>
+            <input id="edit-book-pages" name="pages" placeholder="Pages of book" type="text">
+
+            <label for="read">Have you read it in entire ?</label>
+            <input id="edit-book-read" name="read" type="checkbox">
+
+            <input id="edit" class="edit" name="edit" value="edit" type="submit">
         </form>
     </div>
     <script src="../js/main.js" type="module"></script>
