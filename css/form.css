@@ -72,3 +72,31 @@ input[type=text], input[type=number] {
 .visuallyHiden {
     opacity: 0;
 }
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 653px) {
+    .form-title-container {
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 640px) {
+    .form-title-container {
+        margin-top: 10vh;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .form-title-container {
+        margin-top: 10vh;
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+    .form-title-container {
+        margin-top: 20vh;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+}
