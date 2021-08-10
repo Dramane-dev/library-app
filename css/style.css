@@ -72,6 +72,9 @@ h3 {
 
 .no-books {
     display: none;
+    width: 90%;
+    margin-top: 25vh;
+    text-align: center;
 }
 
 .add-new-book {
@@ -81,6 +84,7 @@ h3 {
     box-sizing: border-box;
     margin-bottom: 16px;
     margin-top: 30px;
+    padding: 5px;
     background-color: antiquewhite;
     font-size: x-large;
     text-align: center;
