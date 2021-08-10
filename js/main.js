@@ -22,7 +22,11 @@ export function Book(
 initInstance();
 
 let booksContainer = document.querySelector('.books-container');
-let actualEditBtn;
+export var actualEditBtn = {};
+Object.defineProperty(actualEditBtn, 'btn', {
+    value: null,
+    writable: true
+});
 
 window.setInterval(() => {
     if (!booksContainer.contains(document.querySelector('.book-card'))) {
@@ -37,8 +41,14 @@ variables.appTitle.addEventListener('click', () => {
 });
 
 variables.addNewBookBtn.addEventListener('click', () => {
-    hideAllBooks();
-    displayForm();
+    if (variables.editFormTitle.style.display === 'block' && variables.editFormContainer.style.display === 'block') {
+        variables.editFormTitle.style.display = 'none';
+        variables.editFormContainer.style.display = 'none';
+        displayForm();
+    } else {
+        hideAllBooks();
+        displayForm();
+    }
 });
 
 variables.addNewBook.addEventListener('click', () => {
@@ -65,18 +75,25 @@ variables.edit.addEventListener('click', (e) => {
 
     e.preventDefault();
 
-    variables.formTitle.style.display = 'none';
-    variables.formContainer.style.display = 'none';
+    variables.editFormTitle.style.display = 'none';
+    variables.editFormContainer.style.display = 'none';
 
     getEditFormValues(editBook);
 
-    console.log(actualEditBtn);
-    actualEditBtn.parentNode.parentNode.querySelectorAll('p').forEach(data => {
+    actualEditBtn.btn.parentNode.parentNode.querySelectorAll('p').forEach(data => {
         data.textContent = editBook[i];
         i++;
     });
 
     variables.booksContainer.style.display = 'flex';
+});
+
+variables.cancel.addEventListener('click', () => {
+    window.location.href = variables.home;
+});
+
+variables.editCancel.addEventListener('click', () => {
+    window.location.href = variables.home;
 });
 
 displayBook(variables.myLibrary);
@@ -92,7 +109,7 @@ editBtnList.forEach(btn => {
         hideAllBooks();
         displayEditForm(actualBook);
 
-        actualEditBtn = btn;
+        actualEditBtn.btn = btn;
     });
 });
 

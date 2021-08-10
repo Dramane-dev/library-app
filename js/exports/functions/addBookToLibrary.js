@@ -1,7 +1,10 @@
 import * as variables from '../variables.js';
 import * as htmlWords from '../htmlWords.js';
+import * as mainVariables from '../../main.js';
 import { createElement } from './createElement.js';
 import { addChildren } from './addChildren.js';
+import { hideAllBooks } from './hideAllBooks.js';
+import { displayEditForm } from './displayEditForm.js';
 
 export function addBookToLibrary(book, id) {
     let container = variables.booksContainer;
@@ -37,8 +40,14 @@ export function addBookToLibrary(book, id) {
     btnsContainer.appendChild(editBook);
 
     editBook.addEventListener('click', () => {
-        console.log('eidt my book');
-        // variables.booksContainer.openForm(editBook.parentNode);
+        let actualBook = variables.objectInstances.filter(
+            book => book.title === editBook.parentNode.parentNode.querySelector('p').textContent
+        );
+
+        hideAllBooks();
+        displayEditForm(actualBook);
+
+        mainVariables.actualEditBtn.btn = editBook;
     });
 
     removeBookCard.addEventListener('click', () => {
