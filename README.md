@@ -1,4 +1,4 @@
-# APPLE CALCULATOR 
+# Library App
 
 ![alt text](https://github.com/Dramane-dev/library-app/blob/master/ScreenApp.png?raw=true)
 
