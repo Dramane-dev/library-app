@@ -5,7 +5,6 @@ let storageObject = {
         writable: true
     }
 };
-let objectInstances = [];
 let home = 'http://127.0.0.1:5500/html/index.html';
 let appTitle = document.getElementById('title');
 let booksContainer = document.getElementById('books-container');
@@ -33,7 +32,6 @@ export {
     appTitle,
     localStorage,
     storageObject,
-    objectInstances,
     home,
     booksContainer,
     formTitle,

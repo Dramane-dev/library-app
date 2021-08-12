@@ -24,9 +24,16 @@ if (variables.storageObject.booksInStorage.value) {
     displayBook(variables.storageObject.booksInStorage.value);
 }
 
-if (!JSON.parse(variables.localStorage.getItem('Books')).length > 0) {
-    variables.noBookMsg.style.display = 'block';
-}
+window.setInterval(() => {
+    let booksContainer = document.querySelector('.books-container');
+
+    if (!booksContainer.contains(document.querySelector('.book-card'))) {
+        variables.noBookMsg.style.display = 'block';
+    } else {
+        variables.noBookMsg.style.display = 'none';
+    }
+}, 100);
+
 export var actualEditBtn = {};
 Object.defineProperty(actualEditBtn, 'btn', {
     value: null,
@@ -58,7 +65,7 @@ variables.addNewBook.addEventListener('click', () => {
 variables.submit.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let id = variables.storageObject.booksInStorage.value.length + 1;
+    let id = '_' + Math.random().toString(36).substr(2, 9);
 
     variables.formTitle.style.display = 'none';
     variables.formContainer.style.display = 'none';
