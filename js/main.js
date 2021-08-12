@@ -1,5 +1,4 @@
 import * as variables from './exports/variables.js';
-import { initInstance } from './exports/functions/initInstance.js';
 import { getFormValues } from './exports/functions/getFormValues.js';
 import { displayBook } from './exports/functions/displayBook.js';
 import { hideAllBooks } from './exports/functions/hideAllBooks.js';
@@ -8,33 +7,33 @@ import { displayEditForm } from './exports/functions/displayEditForm.js';
 import { getEditFormValues } from './exports/functions/getEditFormValues.js';
 
 export function Book(
+    id,
     title,
     author,
     pages,
     read
 ) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
 
-initInstance();
+if (variables.storageObject.booksInStorage.value) {
+    displayBook(variables.storageObject.booksInStorage.value);
+}
 
-let booksContainer = document.querySelector('.books-container');
+if (!JSON.parse(variables.localStorage.getItem('Books')).length > 0) {
+    variables.noBookMsg.style.display = 'block';
+}
 export var actualEditBtn = {};
 Object.defineProperty(actualEditBtn, 'btn', {
     value: null,
     writable: true
 });
 
-window.setInterval(() => {
-    if (!booksContainer.contains(document.querySelector('.book-card'))) {
-        variables.noBookMsg.style.display = 'block';
-    } else {
-        variables.noBookMsg.style.display = 'none';
-    }
-}, 100);
+let actualId;
 
 variables.appTitle.addEventListener('click', () => {
     location.reload();
@@ -59,7 +58,7 @@ variables.addNewBook.addEventListener('click', () => {
 variables.submit.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let id = variables.myLibrary.length - 1;
+    let id = variables.storageObject.booksInStorage.value.length + 1;
 
     variables.formTitle.style.display = 'none';
     variables.formContainer.style.display = 'none';
@@ -70,15 +69,26 @@ variables.submit.addEventListener('click', (e) => {
 });
 
 variables.edit.addEventListener('click', (e) => {
-    let editBook = [];
-    let i = 0;
-
-    e.preventDefault();
-
     variables.editFormTitle.style.display = 'none';
     variables.editFormContainer.style.display = 'none';
+    e.preventDefault();
 
-    getEditFormValues(editBook);
+    let editBook = [];
+    let i = 0;
+    let bookInStorageFiltered = variables.storageObject.booksInStorage.value.filter(
+        book => book.id === actualId
+    );
+
+    getEditFormValues(editBook, bookInStorageFiltered);
+
+    for (let book of bookInStorageFiltered) {
+        book.title = editBook[0];
+        book.author = editBook[1];
+        book.pages = editBook[2];
+        book.read = editBook[3];
+    }
+
+    variables.localStorage.setItem('Books', JSON.stringify(variables.storageObject.booksInStorage.value));
 
     actualEditBtn.btn.parentNode.parentNode.querySelectorAll('p').forEach(data => {
         data.textContent = editBook[i];
@@ -96,20 +106,18 @@ variables.editCancel.addEventListener('click', () => {
     window.location.href = variables.home;
 });
 
-displayBook(variables.myLibrary);
-
 let editBtnList = document.querySelectorAll('.edit-book');
 
 editBtnList.forEach(btn => {
     btn.addEventListener('click', () => {
-        let actualBook = variables.objectInstances.filter(
-            book => book.title === btn.parentNode.parentNode.querySelector('p').textContent
+        let actualBook = variables.storageObject.booksInStorage.value.filter(
+            book => (book.title === btn.parentNode.parentNode.querySelector('p').textContent)
         );
 
         hideAllBooks();
         displayEditForm(actualBook);
-
         actualEditBtn.btn = btn;
+        actualId = actualBook[0].id;
     });
 });
 
@@ -118,5 +126,10 @@ let deleteBtnList = document.querySelectorAll('.delete-book');
 deleteBtnList.forEach(btn => {
     btn.addEventListener('click', () => {
         variables.booksContainer.removeChild(btn.parentNode.parentNode);
+        variables.storageObject.booksInStorage.value = JSON.parse(variables.localStorage.getItem('Books')).filter(
+            book => book.title !== btn.parentNode.parentNode.querySelector('p').textContent
+        );
+        variables.localStorage.setItem('Books', JSON.stringify(variables.storageObject.booksInStorage.value));
+        document.location.reload();
     }); 
 });

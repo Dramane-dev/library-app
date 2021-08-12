@@ -40,10 +40,9 @@ export function addBookToLibrary(book, id) {
     btnsContainer.appendChild(editBook);
 
     editBook.addEventListener('click', () => {
-        let actualBook = variables.objectInstances.filter(
+        let actualBook = variables.storageObject.booksInStorage.value.filter(
             book => book.title === editBook.parentNode.parentNode.querySelector('p').textContent
         );
-
         hideAllBooks();
         displayEditForm(actualBook);
 
@@ -55,8 +54,6 @@ export function addBookToLibrary(book, id) {
     });
 
     bookCard.appendChild(btnsContainer);
-
-    variables.myLibrary.push(book);
 
     childrens = [
         createElement(words.Title, 'h1'),
